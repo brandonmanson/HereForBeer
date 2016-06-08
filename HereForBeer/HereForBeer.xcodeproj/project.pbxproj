@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		94DF90841D08711400960F7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90831D08711400960F7F /* main.m */; };
 		94DF90871D08711400960F7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90861D08711400960F7F /* AppDelegate.m */; };
-		94DF908A1D08711400960F7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90891D08711400960F7F /* ViewController.m */; };
 		94DF908D1D08711400960F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94DF908B1D08711400960F7F /* Main.storyboard */; };
 		94DF90901D08711400960F7F /* HereForBeer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94DF908E1D08711400960F7F /* HereForBeer.xcdatamodeld */; };
 		94DF90921D08711400960F7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DF90911D08711400960F7F /* Assets.xcassets */; };
 		94DF90951D08711400960F7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94DF90931D08711400960F7F /* LaunchScreen.storyboard */; };
+		D46F8F1F1D089F2000C5B7D7 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */; };
+		D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,13 +22,15 @@
 		94DF90831D08711400960F7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94DF90851D08711400960F7F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		94DF90861D08711400960F7F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		94DF90881D08711400960F7F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		94DF90891D08711400960F7F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		94DF908C1D08711400960F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94DF908F1D08711400960F7F /* HereForBeer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HereForBeer.xcdatamodel; sourceTree = "<group>"; };
 		94DF90911D08711400960F7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94DF90941D08711400960F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94DF90961D08711400960F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewController.h; sourceTree = "<group>"; };
+		D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
+		D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +63,13 @@
 		94DF90811D08711400960F7F /* HereForBeer */ = {
 			isa = PBXGroup;
 			children = (
+				D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */,
+				D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */,
 				94DF90851D08711400960F7F /* AppDelegate.h */,
 				94DF90861D08711400960F7F /* AppDelegate.m */,
-				94DF90881D08711400960F7F /* ViewController.h */,
-				94DF90891D08711400960F7F /* ViewController.m */,
 				94DF908B1D08711400960F7F /* Main.storyboard */,
+				D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */,
+				D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */,
 				94DF90911D08711400960F7F /* Assets.xcassets */,
 				94DF90931D08711400960F7F /* LaunchScreen.storyboard */,
 				94DF90961D08711400960F7F /* Info.plist */,
@@ -152,9 +157,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94DF908A1D08711400960F7F /* ViewController.m in Sources */,
 				94DF90901D08711400960F7F /* HereForBeer.xcdatamodeld in Sources */,
+				D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */,
 				94DF90871D08711400960F7F /* AppDelegate.m in Sources */,
+				D46F8F1F1D089F2000C5B7D7 /* EventTableViewController.m in Sources */,
 				94DF90841D08711400960F7F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +310,7 @@
 				94DF909B1D08711400960F7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
