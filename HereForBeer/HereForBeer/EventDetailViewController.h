@@ -10,4 +10,6 @@
 
 @interface EventDetailViewController : UIViewController
 
+@property (strong, nonatomic) NSString *event;
+
 @end
