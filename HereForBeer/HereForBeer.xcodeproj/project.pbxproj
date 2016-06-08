@@ -13,6 +13,7 @@
 		94DF90901D08711400960F7F /* HereForBeer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 94DF908E1D08711400960F7F /* HereForBeer.xcdatamodeld */; };
 		94DF90921D08711400960F7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DF90911D08711400960F7F /* Assets.xcassets */; };
 		94DF90951D08711400960F7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94DF90931D08711400960F7F /* LaunchScreen.storyboard */; };
+		94DF909E1D08A44200960F7F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF909D1D08A44200960F7F /* Event.m */; };
 		D46F8F1F1D089F2000C5B7D7 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */; };
 		D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */; };
 /* End PBXBuildFile section */
@@ -27,6 +28,8 @@
 		94DF90911D08711400960F7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94DF90941D08711400960F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		94DF90961D08711400960F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94DF909C1D08A44200960F7F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		94DF909D1D08A44200960F7F /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewController.h; sourceTree = "<group>"; };
 		D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
 		D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 		94DF90811D08711400960F7F /* HereForBeer */ = {
 			isa = PBXGroup;
 			children = (
+				94DF909C1D08A44200960F7F /* Event.h */,
+				94DF909D1D08A44200960F7F /* Event.m */,
 				D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */,
 				D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */,
 				94DF90851D08711400960F7F /* AppDelegate.h */,
@@ -157,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DF909E1D08A44200960F7F /* Event.m in Sources */,
 				94DF90901D08711400960F7F /* HereForBeer.xcdatamodeld in Sources */,
 				D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */,
 				94DF90871D08711400960F7F /* AppDelegate.m in Sources */,
