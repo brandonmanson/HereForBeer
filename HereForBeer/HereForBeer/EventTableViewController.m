@@ -7,6 +7,7 @@
 //
 
 #import "EventTableViewController.h"
+#import "EventDetailViewController.h"
 
 @interface EventTableViewController ()
 
@@ -14,8 +15,12 @@
 
 @implementation EventTableViewController
 
+NSMutableArray *eventList, *pageIds;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	eventList = [[NSMutableArray alloc] initWithObjects:@"thing1", @"thing2", nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -29,27 +34,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+	return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if(section == 0) {
+		return @"This Week";
+	}
+	else {
+		return @"This Month";
+	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+	if (section == 0) {
+		return eventList.count;
+	} else {
+		return eventList.count;
+	}
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
+	// Configure the cell...
+	if (indexPath.section == 0) {
+		cell.textLabel.text = [eventList objectAtIndex:indexPath.row];
+	} else {
+		cell.textLabel.text = [eventList objectAtIndex:indexPath.row];
+
+	}
+	
+	return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -85,14 +102,13 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+	EventDetailViewController *vc = [segue destinationViewController];
+	
+	vc.event = [eventList objectAtIndex:[self.tableView indexPathForSelectedRow].row];
 }
-*/
 
 @end

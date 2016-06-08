@@ -10,13 +10,13 @@
 
 @interface EventDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *eventNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventStartTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventEndTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventVenueNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *eventVenueStreetAddressLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventNameLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventDescriptionLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventDateLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventStartTimeLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventEndTimeLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventVenueNameLabel;
+@property(weak, nonatomic)IBOutlet UILabel *eventVenueStreetAddressLabel;
 
 @end
 
@@ -24,7 +24,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	[self populateEventDetailLabels];
     // Do any additional setup after loading the view.
+}
+
+- (void)populateEventDetailLabels {
+	_eventNameLabel.text = _event;
 }
 
 - (void)didReceiveMemoryWarning {
