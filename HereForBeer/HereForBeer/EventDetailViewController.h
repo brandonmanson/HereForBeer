@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "Event.h"
 #import "AppDateProcessor.h"
 
-@interface EventDetailViewController : UIViewController <AppDateProcessor>
+@interface EventDetailViewController : UIViewController <AppDateProcessor, MKMapViewDelegate>
 
 @property (strong, nonatomic) Event *event;
 
