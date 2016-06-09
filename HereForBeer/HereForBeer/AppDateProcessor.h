@@ -10,10 +10,15 @@
 
 @protocol AppDateProcessor <NSObject>
 
+@optional
 -(NSDate *)dateFromString:(NSString *)dateString;
+@optional
 -(NSString *)formatDateToDateTimeString:(NSDate *)date;
+@optional
 -(NSString *)formatDateToDateString:(NSDate *)date;
+@optional
 -(NSString *)formatDateToTimeString:(NSDate *)date;
+@optional
 -(NSDate *)addDays:(int)numOfDaysToAdd toDate:(NSDate *)originalDate;
 
 @end
