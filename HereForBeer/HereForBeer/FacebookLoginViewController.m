@@ -11,15 +11,18 @@
 
 @interface FacebookLoginViewController ()
 
+@property (strong, nonatomic) IBOutlet FBSDKLoginButton *loginButton;
+
 @end
 
 @implementation FacebookLoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc]init];
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
+    _loginButton = [[FBSDKLoginButton alloc]initWithFrame:CGRectZero];
+    _loginButton.center = self.view.center;
+    [self.view addSubview:_loginButton];
+    [_loginButton setDelegate:self];
     // Do any additional setup after loading the view.
 }
 
@@ -32,9 +35,10 @@
     // Init singleton and pass it the access token
     [[User getInstance]setAccessToken:result];
     if ([User getInstance]) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self performSegueWithIdentifier:@"unwindToTableView" sender:self];
     }
 }
+
 
 
 

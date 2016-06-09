@@ -5,6 +5,28 @@
 //  Created by tstone10 on 6/8/16.
 //  Copyright © 2016 DetroitLabs. All rights reserved.
 //
+// SAMPLE GRAPH API REQUEST
+//
+/* FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+initWithGraphPath:@"/events"
+parameters:@{ @"ids": @"648104601902330, 206257849387824",@"since": @"2016-06-01",@"until": @"2016-06-10",}
+HTTPMethod:@"GET"];
+[request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+    // Insert your code here
+}];
+*/
+//
+// Before view loads we need to:
+// 1) Check if we have a user object
+// 2) If we do, we need to see if that token has expired
+// 3) If it has, we need to send them through the login sequence again
+// 4) If it hasn't, we should send a request to extend that token
+// 5) If we don't have a user, we need to send them to login so we can create that singleton
+// 6) After doing all of that ^, we then need to call the graph api and pass in our array of venue ids as well as start date and end date
+// 7) We then need to parse that response object, create event objects and send them to the correct arrays to be displayed in the TableView
+//
+//
+
 
 #import "EventTableViewController.h"
 #import "EventDetailViewController.h"
@@ -21,10 +43,6 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"User: %@", [User getInstance]);
-    if (![User getInstance]) {
-        [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
-    }
 	
 	[self populateEventList];
 	
@@ -35,6 +53,13 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if (![User getInstance].token) {
+        [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
+    }
+    // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
 }
 
 - (void)populateEventList {
@@ -195,21 +220,28 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 
 #pragma mark - Navigation
 
+- (IBAction)unwindToTableView:(UIStoryboardSegue *)unwindSegue sender:(id)sender {
+    
+}
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	EventDetailViewController *vc = [segue destinationViewController];
-	
-	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-	
-	Event *event;
-	
-	if (indexPath.section == 0) {
-		event = [eventsThisWeek objectAtIndex:indexPath.row];
-	} else {
-		event = [eventsThisMonth objectAtIndex:indexPath.row];
-	}
-	
-	vc.event = event;
+    if (![[segue identifier] isEqualToString:@"loginModalSegue"]) {
+        
+        EventDetailViewController *vc = [segue destinationViewController];
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        Event *event;
+        
+        if (indexPath.section == 0) {
+            event = [eventsThisWeek objectAtIndex:indexPath.row];
+        } else {
+            event = [eventsThisMonth objectAtIndex:indexPath.row];
+        }
+        
+        vc.event = event;
+    }
 }
 
 @end
