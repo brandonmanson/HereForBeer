@@ -24,8 +24,6 @@ NSMutableArray *eventList, *pageIds;
     if (![User getInstance]) {
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
     }
-	
-	eventList = [[NSMutableArray alloc] initWithObjects:@"thing1", @"thing2", nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
