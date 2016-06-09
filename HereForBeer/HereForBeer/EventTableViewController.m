@@ -45,9 +45,6 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	[self populateEventList];
-	
-	[self createDateBasedArrays];
 	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -60,29 +57,44 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
     if (![User getInstance].token) {
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
     } else {
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                      initWithGraphPath:@"/events"
-                                      parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": @"648104601902330, 206257849387824",@"since": @"2016-06-01",@"until": @"2016-06-10",}
-                                      HTTPMethod:@"GET"];
-        //NSLog(@"%@", request);
-        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-            NSDictionary *parsedData = (NSDictionary *)result;
-//            NSLog(@"%@", parsedData.description);
-            
-            eventsThisWeek = [[NSMutableArray alloc] init];
-            for (NSString *key in parsedData) {
-                for (NSDictionary *event in [[parsedData objectForKey:key] objectForKey:@"data"]) {
-                    Event *newEvent = [[Event alloc] initWithDictionary:event];
-                    
-                    [eventList addObject:newEvent];
-                }
-            }
-            
-            [self.tableView reloadData];
-            
-        }];
+        [self populateEventList];
     }
     // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
+}
+
+- (FBSDKGraphRequest *)createRequest:(NSMutableArray *)arrayOfPageIDs {
+    NSString *idString = [arrayOfPageIDs componentsJoinedByString:@", "];
+    
+    idString = [idString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:@"/events"
+                                  parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": idString,@"since": @"2016-06-09",@"until": @"2016-07-09",}
+                                  HTTPMethod:@"GET"];
+    
+    return request;
+}
+- (void)makeRequest:(FBSDKGraphRequest *)request {
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        NSDictionary *parsedData = (NSDictionary *)result;
+        
+        eventList = [self processResponse:parsedData];
+        [self createDateBasedArrays];
+        [self.tableView reloadData];
+    }];
+}
+- (NSMutableArray *)processResponse:(NSDictionary *)parsedData {
+    NSMutableArray *eventArray = [[NSMutableArray alloc] init];
+
+    for (NSString *key in parsedData) {
+        for (NSDictionary *event in [[parsedData objectForKey:key] objectForKey:@"data"]) {
+            Event *newEvent = [[Event alloc] initWithDictionary:event];
+
+            [eventArray addObject:newEvent];
+        }
+    }
+    
+    return eventArray;
 }
 
 - (void)populateEventList {
@@ -107,6 +119,11 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 //	event2.location = CLLocationCoordinate2DMake(42.273226, -83.598620);
 //	
 //	eventList = [[NSMutableArray alloc] initWithObjects:event1, event2, nil];
+    
+    NSMutableArray *ids = [[NSMutableArray alloc] initWithObjects:@"648104601902330", @"206257849387824", nil];
+    
+    FBSDKGraphRequest *request = [self createRequest:ids];
+    [self makeRequest:request];
     
 }
 
