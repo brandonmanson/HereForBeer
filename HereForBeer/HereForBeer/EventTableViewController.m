@@ -183,6 +183,9 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 		}
 		//else...outside our time frame
 	}
+	
+	[eventsThisWeek sortUsingSelector:@selector(compare:)];
+	[eventsThisMonth sortUsingSelector:@selector(compare:)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -224,6 +227,7 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 	}
 	
 	cell.textLabel.text = event.eventName;
+	cell.detailTextLabel.text = [self formatDateToDateString:event.startTime];
 	
 	return cell;
 }
