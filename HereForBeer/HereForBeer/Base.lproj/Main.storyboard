@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Facebook Login View Controller-->
         <scene sceneID="rYp-17-Tzh">
             <objects>
-                <viewController id="E73-J5-G9s" sceneMemberID="viewController">
+                <viewController id="E73-J5-G9s" customClass="FacebookLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lgA-sK-8vw"/>
                         <viewControllerLayoutGuide type="bottom" id="RcK-t4-9Sj"/>
@@ -18,10 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="qaE-BC-bNB" kind="unwind" identifier="unwindToTableView" unwindAction="unwindToTableView:sender:" id="XiH-1T-e34"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="di6-G0-qZI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qaE-BC-bNB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-72" y="-381"/>
+            <point key="canvasLocation" x="-92" y="-301"/>
         </scene>
         <!--Here for Beer-->
         <scene sceneID="QOC-Cq-kHK">
@@ -67,12 +71,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Here for Beer" id="7GC-eO-5q3"/>
                     <connections>
-                        <segue destination="E73-J5-G9s" kind="presentation" identifier="loginModalSegue" id="NIp-7E-pb2"/>
+                        <segue destination="E73-J5-G9s" kind="show" identifier="loginModalSegue" id="NIp-7E-pb2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dph-XI-Lf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-64" y="411"/>
+            <point key="canvasLocation" x="-92" y="1215"/>
         </scene>
         <!--Event Detail-->
         <scene sceneID="FGf-0h-BHY">
@@ -157,6 +161,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ChK-sH-Mx2">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0t1-jH-2Qn" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="Wil-Yh-7IP" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Kxz-gz-t0M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -166,7 +171,6 @@
                         <segue destination="8WT-4W-8GD" kind="relationship" relationship="rootViewController" id="5nQ-P5-xHm"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0t1-jH-2Qn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-892" y="411"/>
         </scene>
