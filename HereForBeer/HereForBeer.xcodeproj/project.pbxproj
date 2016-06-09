@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		338CFCF6D95F2A12AA3D9814 /* libPods-HereForBeer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4153D59C2488CA6E4354D051 /* libPods-HereForBeer.a */; };
+		940CD1111D08EF6900359DA1 /* FacebookLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940CD1101D08EF6900359DA1 /* FacebookLoginViewController.m */; };
 		94DF90841D08711400960F7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90831D08711400960F7F /* main.m */; };
 		94DF90871D08711400960F7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90861D08711400960F7F /* AppDelegate.m */; };
 		94DF908D1D08711400960F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94DF908B1D08711400960F7F /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 		94DF90921D08711400960F7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DF90911D08711400960F7F /* Assets.xcassets */; };
 		94DF90951D08711400960F7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94DF90931D08711400960F7F /* LaunchScreen.storyboard */; };
 		94DF909E1D08A44200960F7F /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF909D1D08A44200960F7F /* Event.m */; };
+		94DF90A11D08EA5400960F7F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90A01D08EA5400960F7F /* User.m */; };
 		D46F8F1F1D089F2000C5B7D7 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */; };
 		D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */; };
 /* End PBXBuildFile section */
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		4153D59C2488CA6E4354D051 /* libPods-HereForBeer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HereForBeer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60C15A68F212E9A81E96CF19 /* Pods-HereForBeer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HereForBeer.release.xcconfig"; path = "Pods/Target Support Files/Pods-HereForBeer/Pods-HereForBeer.release.xcconfig"; sourceTree = "<group>"; };
+		940CD10F1D08EF6900359DA1 /* FacebookLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookLoginViewController.h; sourceTree = "<group>"; };
+		940CD1101D08EF6900359DA1 /* FacebookLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookLoginViewController.m; sourceTree = "<group>"; };
 		94DF907F1D08711400960F7F /* HereForBeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HereForBeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF90831D08711400960F7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94DF90851D08711400960F7F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,6 +37,8 @@
 		94DF90961D08711400960F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94DF909C1D08A44200960F7F /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		94DF909D1D08A44200960F7F /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		94DF909F1D08EA5400960F7F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		94DF90A01D08EA5400960F7F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		A03B3A20B70A1F16E3E2AD8A /* Pods-HereForBeer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HereForBeer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HereForBeer/Pods-HereForBeer.debug.xcconfig"; sourceTree = "<group>"; };
 		D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTableViewController.h; sourceTree = "<group>"; };
 		D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
@@ -60,6 +66,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		940CD1121D08EF7400359DA1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				940CD10F1D08EF6900359DA1 /* FacebookLoginViewController.h */,
+				940CD1101D08EF6900359DA1 /* FacebookLoginViewController.m */,
+				D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */,
+				D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */,
+				D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */,
+				D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		94DF90761D08711400960F7F = {
 			isa = PBXGroup;
 			children = (
@@ -81,15 +100,11 @@
 		94DF90811D08711400960F7F /* HereForBeer */ = {
 			isa = PBXGroup;
 			children = (
-				94DF909C1D08A44200960F7F /* Event.h */,
-				94DF909D1D08A44200960F7F /* Event.m */,
-				D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */,
-				D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */,
 				94DF90851D08711400960F7F /* AppDelegate.h */,
 				94DF90861D08711400960F7F /* AppDelegate.m */,
 				94DF908B1D08711400960F7F /* Main.storyboard */,
-				D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */,
-				D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */,
+				940CD1121D08EF7400359DA1 /* Controllers */,
+				94DF90A21D08EA6100960F7F /* Models */,
 				94DF90911D08711400960F7F /* Assets.xcassets */,
 				94DF90931D08711400960F7F /* LaunchScreen.storyboard */,
 				94DF90961D08711400960F7F /* Info.plist */,
@@ -105,6 +120,17 @@
 				94DF90831D08711400960F7F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94DF90A21D08EA6100960F7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94DF909F1D08EA5400960F7F /* User.h */,
+				94DF90A01D08EA5400960F7F /* User.m */,
+				94DF909C1D08A44200960F7F /* Event.h */,
+				94DF909D1D08A44200960F7F /* Event.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		A84A440671B5EAAF66DBBE88 /* Pods */ = {
@@ -238,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DF909E1D08A44200960F7F /* Event.m in Sources */,
+				94DF90A11D08EA5400960F7F /* User.m in Sources */,
+				940CD1111D08EF6900359DA1 /* FacebookLoginViewController.m in Sources */,
 				94DF90901D08711400960F7F /* HereForBeer.xcdatamodeld in Sources */,
 				D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */,
 				94DF90871D08711400960F7F /* AppDelegate.m in Sources */,
