@@ -8,6 +8,7 @@
 
 #import "EventTableViewController.h"
 #import "EventDetailViewController.h"
+#import "Event.h"
 
 @interface EventTableViewController ()
 
@@ -15,18 +16,99 @@
 
 @implementation EventTableViewController
 
-NSMutableArray *eventList, *pageIds;
+NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	eventList = [[NSMutableArray alloc] initWithObjects:@"thing1", @"thing2", nil];
-    
+	[self populateEventList];
+	
+	[self createDateBasedArrays];
+	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)populateEventList {
+	
+	Event *event1 = [[Event alloc] init];
+	Event *event2 = [[Event alloc] init];
+	
+	event1.eventName = @"Bell's Tap Takeover";
+	event1.startTime = [self dateFromString:@"6/15/2016 6:00 PM"];
+	event1.endTime = [self dateFromString:@"6/15/2016 10:00 PM"];
+	event1.venueName = @"Hopcat Detroit";
+	event1.venueStreetAddress = @"4265 Woodward Ave, Detroit, MI 48201";
+	event1.eventDescription = @"Tap takeover. All of the beer. It will be poured.";
+	event1.location = CLLocationCoordinate2DMake(42.352402, -83.061622);
+	
+	event2.eventName = @"Matt's garage beer";
+	event2.startTime = [self dateFromString:@"6/25/2016 6:00 PM"];
+	event2.endTime = [self dateFromString:@"6/25/2016 10:00 PM"];
+	event2.venueName = @"Matt's garage";
+	event2.venueStreetAddress = @"8275 Stamford Rd, Ypsilanti MI 48198";
+	event2.eventDescription = @"Home brew baby.";
+	event2.location = CLLocationCoordinate2DMake(42.273226, -83.598620);
+	
+	eventList = [[NSMutableArray alloc] initWithObjects:event1, event2, nil];
+}
+
+-(NSDate *)dateFromString:(NSString *)dateString {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+	
+	return [formatter dateFromString:dateString];
+}
+
+-(NSString *)formatDateToDateTimeString:(NSDate *)date {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+	
+	return [formatter stringFromDate:date];
+}
+
+-(NSString *)formatDateToDateString:(NSDate *)date {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"MM/dd/yyyy"];
+	
+	return [formatter stringFromDate:date];
+}
+
+-(NSString *)formatDateToTimeString:(NSDate *)date {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"hh:mm a"];
+	
+	return [formatter stringFromDate:date];
+}
+
+-(NSDate *)addDays:(int)numOfDaysToAdd toDate:(NSDate *)originalDate {
+	NSDate *newDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:numOfDaysToAdd toDate:originalDate options:nil];
+	
+	return newDate;
+}
+
+- (void)createDateBasedArrays {
+	eventsThisWeek = [[NSMutableArray alloc] init];
+	eventsThisMonth = [[NSMutableArray alloc] init];
+	
+	NSDate *today = [NSDate date];
+	
+	NSDate *sevenDaysInFuture = [self addDays:7 toDate:today];
+	NSDate *thirtyDaysInFuture = [self addDays:30 toDate:today];
+	
+	for (Event *event in eventList) {
+		//if date is within the next 7 days
+		if([event.startTime compare:sevenDaysInFuture] == NSOrderedAscending) {
+			[eventsThisWeek addObject:event];
+		}
+		else if([event.startTime compare:thirtyDaysInFuture] == NSOrderedAscending) {
+			[eventsThisMonth addObject:event];
+		}
+		//else...outside our time frame
+	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,21 +131,25 @@ NSMutableArray *eventList, *pageIds;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
-		return eventList.count;
+		return eventsThisWeek.count;
 	} else {
-		return eventList.count;
+		return eventsThisMonth.count;
 	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
 	// Configure the cell...
+	
+	Event *event;
+	
 	if (indexPath.section == 0) {
-		cell.textLabel.text = [eventList objectAtIndex:indexPath.row];
+		event = [eventsThisWeek objectAtIndex:indexPath.row];
 	} else {
-		cell.textLabel.text = [eventList objectAtIndex:indexPath.row];
-
+		event = [eventsThisMonth objectAtIndex:indexPath.row];
 	}
+	
+	cell.textLabel.text = event.eventName;
 	
 	return cell;
 }
@@ -108,7 +194,17 @@ NSMutableArray *eventList, *pageIds;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	EventDetailViewController *vc = [segue destinationViewController];
 	
-	vc.event = [eventList objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+	NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+	
+	Event *event;
+	
+	if (indexPath.section == 0) {
+		event = [eventsThisWeek objectAtIndex:indexPath.row];
+	} else {
+		event = [eventsThisMonth objectAtIndex:indexPath.row];
+	}
+	
+	vc.event = event;
 }
 
 @end
