@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDateProcessor.h"
+#import "FacebookAPIConsumer.h"
 
-@interface EventTableViewController : UITableViewController <AppDateProcessor>
+@interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer>
 
 @end
