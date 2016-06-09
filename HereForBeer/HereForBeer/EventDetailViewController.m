@@ -11,12 +11,13 @@
 @interface EventDetailViewController ()
 
 @property(weak, nonatomic)IBOutlet UILabel *eventNameLabel;
-@property(weak, nonatomic)IBOutlet UILabel *eventDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *eventDescriptionTextBox;
 @property(weak, nonatomic)IBOutlet UILabel *eventDateLabel;
 @property(weak, nonatomic)IBOutlet UILabel *eventStartTimeLabel;
 @property(weak, nonatomic)IBOutlet UILabel *eventEndTimeLabel;
 @property(weak, nonatomic)IBOutlet UILabel *eventVenueNameLabel;
 @property(weak, nonatomic)IBOutlet UILabel *eventVenueStreetAddressLabel;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -24,13 +25,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	_mapView.delegate = self;
+	
 	[self populateEventDetailLabels];
+	[self setMapLocation];
+	[self setPinForEventLocation];
     // Do any additional setup after loading the view.
 }
 
 - (void)populateEventDetailLabels {
 	_eventNameLabel.text = _event.eventName;
-	_eventDescriptionLabel.text = _event.eventDescription;
+	_eventDescriptionTextBox.text = _event.eventDescription;
 	_eventDateLabel.text = [self formatDateToDateString:_event.startTime];
 	_eventStartTimeLabel.text = [self formatDateToTimeString:_event.startTime];
 	_eventEndTimeLabel.text = [self formatDateToTimeString:_event.endTime];
@@ -41,6 +46,35 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)setPinForEventLocation {
+//	MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+//	[annotation setCoordinate:_event.location];
+//	[self.mapView addAnnotation:annotation];
+	MKPlacemark* marker = [[MKPlacemark alloc] initWithCoordinate:_event.location addressDictionary:nil];
+	[self.mapView addAnnotation:marker];
+}
+
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation
+{
+	MKPinAnnotationView *newAnnotation = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annotation1"];
+	newAnnotation.pinTintColor = [UIColor greenColor];
+	newAnnotation.animatesDrop = YES;
+	newAnnotation.canShowCallout = NO;
+	[newAnnotation setSelected:YES animated:YES];
+	return newAnnotation;
+}
+
+-(void)setMapLocation {
+	MKCoordinateRegion newRegion;
+	newRegion.center.latitude = _event.location.latitude;
+	newRegion.center.longitude = _event.location.longitude;
+	newRegion.span.latitudeDelta = 0.005;
+	newRegion.span.longitudeDelta = 0.005;
+	
+	[self.mapView setRegion:newRegion animated:YES];
+	
 }
 
 -(NSDate *)dateFromString:(NSString *)dateString {

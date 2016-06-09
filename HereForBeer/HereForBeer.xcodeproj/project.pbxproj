@@ -19,6 +19,7 @@
 		94DF90A11D08EA5400960F7F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90A01D08EA5400960F7F /* User.m */; };
 		D46F8F1F1D089F2000C5B7D7 /* EventTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */; };
 		D46F8F221D08A28500C5B7D7 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */; };
+		D46F8F251D09F78A00C5B7D7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46F8F241D09F78A00C5B7D7 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
 		D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
 		D46F8F231D08EF9E00C5B7D7 /* AppDateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDateProcessor.h; sourceTree = "<group>"; };
+		D46F8F241D09F78A00C5B7D7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46F8F251D09F78A00C5B7D7 /* MapKit.framework in Frameworks */,
 				338CFCF6D95F2A12AA3D9814 /* libPods-HereForBeer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +66,7 @@
 		59B101A4326692A9BABF7014 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D46F8F241D09F78A00C5B7D7 /* MapKit.framework */,
 				4153D59C2488CA6E4354D051 /* libPods-HereForBeer.a */,
 			);
 			name = Frameworks;
