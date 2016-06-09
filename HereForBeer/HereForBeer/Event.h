@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString *eventDescription;
 @property (nonatomic) CLLocationCoordinate2D location;
 
+-(NSComparisonResult)compare:(Event *)otherEvent;
 -(id) initWithDictionary:(NSDictionary *)dictionary;
 +(id) initWithDictionary:(NSDictionary *)dictionary;
 

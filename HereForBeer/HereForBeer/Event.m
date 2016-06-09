@@ -27,6 +27,10 @@
     return self;
 }
 
+- (NSComparisonResult)compare:(Event *)otherEvent {
+	return [self.startTime compare:otherEvent.startTime];
+}
+
 -(NSDate *)dateFromString:(NSString *)dateString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
