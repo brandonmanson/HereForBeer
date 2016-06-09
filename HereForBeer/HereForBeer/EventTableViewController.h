@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDateProcessor.h"
 
-@interface EventTableViewController : UITableViewController
+@interface EventTableViewController : UITableViewController <AppDateProcessor>
 
 @end

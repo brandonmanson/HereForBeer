@@ -44,6 +44,7 @@
 		D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTableViewController.m; sourceTree = "<group>"; };
 		D46F8F201D08A28500C5B7D7 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
 		D46F8F211D08A28500C5B7D7 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
+		D46F8F231D08EF9E00C5B7D7 /* AppDateProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDateProcessor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +101,11 @@
 		94DF90811D08711400960F7F /* HereForBeer */ = {
 			isa = PBXGroup;
 			children = (
+				94DF909C1D08A44200960F7F /* Event.h */,
+				94DF909D1D08A44200960F7F /* Event.m */,
+				D46F8F1D1D089F2000C5B7D7 /* EventTableViewController.h */,
+				D46F8F1E1D089F2000C5B7D7 /* EventTableViewController.m */,
+				D46F8F231D08EF9E00C5B7D7 /* AppDateProcessor.h */,
 				94DF90851D08711400960F7F /* AppDelegate.h */,
 				94DF90861D08711400960F7F /* AppDelegate.m */,
 				94DF908B1D08711400960F7F /* Main.storyboard */,

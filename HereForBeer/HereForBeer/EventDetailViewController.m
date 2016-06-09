@@ -29,12 +29,52 @@
 }
 
 - (void)populateEventDetailLabels {
-	_eventNameLabel.text = _event;
+	_eventNameLabel.text = _event.eventName;
+	_eventDescriptionLabel.text = _event.eventDescription;
+	_eventDateLabel.text = [self formatDateToDateString:_event.startTime];
+	_eventStartTimeLabel.text = [self formatDateToTimeString:_event.startTime];
+	_eventEndTimeLabel.text = [self formatDateToTimeString:_event.endTime];
+	_eventVenueNameLabel.text = _event.venueName;
+	_eventVenueStreetAddressLabel.text = _event.venueStreetAddress;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSDate *)dateFromString:(NSString *)dateString {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+	
+	return [formatter dateFromString:dateString];
+}
+
+-(NSString *)formatDateToDateTimeString:(NSDate *)date {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+	
+	return [formatter stringFromDate:date];
+}
+
+-(NSString *)formatDateToDateString:(NSDate *)date {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"MM/dd/yyyy"];
+	
+	return [formatter stringFromDate:date];
+}
+
+-(NSString *)formatDateToTimeString:(NSDate *)date {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	[formatter setDateFormat:@"hh:mm a"];
+	
+	return [formatter stringFromDate:date];
+}
+
+-(NSDate *)addDays:(int)numOfDaysToAdd toDate:(NSDate *)originalDate {
+	NSDate *newDate = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:numOfDaysToAdd toDate:originalDate options:nil];
+	
+	return newDate;
 }
 
 /*

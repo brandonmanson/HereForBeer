@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
+#import "AppDateProcessor.h"
 
-@interface EventDetailViewController : UIViewController
+@interface EventDetailViewController : UIViewController <AppDateProcessor>
 
-@property (strong, nonatomic) NSString *event;
+@property (strong, nonatomic) Event *event;
 
 @end
