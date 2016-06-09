@@ -9,6 +9,7 @@
 #import "EventTableViewController.h"
 #import "EventDetailViewController.h"
 #import "Event.h"
+#import "User.h"
 
 @interface EventTableViewController ()
 
@@ -20,6 +21,10 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"User: %@", [User getInstance]);
+    if (![User getInstance]) {
+        [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
+    }
 	
 	[self populateEventList];
 	
