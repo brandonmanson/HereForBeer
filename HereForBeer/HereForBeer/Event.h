@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface Event : NSObject
+@interface Event : NSObject <AppDateProcessor>
 
 @property (strong, nonatomic) NSString *eventName;
 @property (strong, nonatomic) NSDate *startTime;
@@ -18,5 +18,8 @@
 @property (strong, nonatomic) NSString *venueStreetAddress;
 @property (strong, nonatomic) NSString *eventDescription;
 @property (nonatomic) CLLocationCoordinate2D location;
+
+-(id) initWithDictionary:(NSDictionary *)dictionary;
++(id) initWithDictionary:(NSDictionary *)dictionary;
 
 @end

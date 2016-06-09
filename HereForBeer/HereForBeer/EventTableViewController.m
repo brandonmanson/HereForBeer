@@ -32,6 +32,7 @@ HTTPMethod:@"GET"];
 #import "EventDetailViewController.h"
 #import "Event.h"
 #import "User.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface EventTableViewController ()
 
@@ -58,37 +59,63 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 - (void)viewDidAppear:(BOOL)animated {
     if (![User getInstance].token) {
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
+    } else {
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                      initWithGraphPath:@"/events"
+                                      parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": @"648104601902330, 206257849387824",@"since": @"2016-06-01",@"until": @"2016-06-10",}
+                                      HTTPMethod:@"GET"];
+        //NSLog(@"%@", request);
+        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+            NSDictionary *parsedData = (NSDictionary *)result;
+//            NSLog(@"%@", parsedData.description);
+            
+            eventsThisWeek = [[NSMutableArray alloc] init];
+            for (NSString *key in parsedData) {
+                for (NSDictionary *event in [[parsedData objectForKey:key] objectForKey:@"data"]) {
+                    Event *newEvent = [[Event alloc] initWithDictionary:event];
+                    
+                    [eventList addObject:newEvent];
+                }
+            }
+            
+            [self.tableView reloadData];
+            
+        }];
     }
     // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
 }
 
 - (void)populateEventList {
 	
-	Event *event1 = [[Event alloc] init];
-	Event *event2 = [[Event alloc] init];
-	
-	event1.eventName = @"Bell's Tap Takeover";
-	event1.startTime = [self dateFromString:@"6/15/2016 6:00 PM"];
-	event1.endTime = [self dateFromString:@"6/15/2016 10:00 PM"];
-	event1.venueName = @"Hopcat Detroit";
-	event1.venueStreetAddress = @"4265 Woodward Ave, Detroit, MI 48201";
-	event1.eventDescription = @"Tap takeover. All of the beer. It will be poured.";
-	event1.location = CLLocationCoordinate2DMake(42.352402, -83.061622);
-	
-	event2.eventName = @"Matt's garage beer";
-	event2.startTime = [self dateFromString:@"6/25/2016 6:00 PM"];
-	event2.endTime = [self dateFromString:@"6/25/2016 10:00 PM"];
-	event2.venueName = @"Matt's garage";
-	event2.venueStreetAddress = @"8275 Stamford Rd, Ypsilanti MI 48198";
-	event2.eventDescription = @"Home brew baby.";
-	event2.location = CLLocationCoordinate2DMake(42.273226, -83.598620);
-	
-	eventList = [[NSMutableArray alloc] initWithObjects:event1, event2, nil];
+//	Event *event1 = [[Event alloc] init];
+//	Event *event2 = [[Event alloc] init];
+//	
+//	event1.eventName = @"Bell's Tap Takeover";
+//	event1.startTime = [self dateFromString:@"6/15/2016 6:00 PM"];
+//	event1.endTime = [self dateFromString:@"6/15/2016 10:00 PM"];
+//	event1.venueName = @"Hopcat Detroit";
+//	event1.venueStreetAddress = @"4265 Woodward Ave, Detroit, MI 48201";
+//	event1.eventDescription = @"Tap takeover. All of the beer. It will be poured.";
+//	event1.location = CLLocationCoordinate2DMake(42.352402, -83.061622);
+//	
+//	event2.eventName = @"Matt's garage beer";
+//	event2.startTime = [self dateFromString:@"6/25/2016 6:00 PM"];
+//	event2.endTime = [self dateFromString:@"6/25/2016 10:00 PM"];
+//	event2.venueName = @"Matt's garage";
+//	event2.venueStreetAddress = @"8275 Stamford Rd, Ypsilanti MI 48198";
+//	event2.eventDescription = @"Home brew baby.";
+//	event2.location = CLLocationCoordinate2DMake(42.273226, -83.598620);
+//	
+//	eventList = [[NSMutableArray alloc] initWithObjects:event1, event2, nil];
+    
 }
 
 -(NSDate *)dateFromString:(NSString *)dateString {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-	[formatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+	[formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    
+    //yyyy-mm-ddThh:mm:ss-Z
+    //2016-06-07T22:30:00-0400
 	
 	return [formatter dateFromString:dateString];
 }
