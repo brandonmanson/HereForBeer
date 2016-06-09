@@ -17,6 +17,6 @@
 @property (strong, nonatomic) NSString *venueName;
 @property (strong, nonatomic) NSString *venueStreetAddress;
 @property (strong, nonatomic) NSString *eventDescription;
-@property (nonatomic) CLLocationCoordinate2D *location;
+@property (nonatomic) CLLocationCoordinate2D location;
 
 @end
