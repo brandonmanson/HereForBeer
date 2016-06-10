@@ -12,6 +12,7 @@
 		94640EC01D0A367F0035A2DE /* VenuesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94640EBF1D0A367F0035A2DE /* VenuesTableViewController.m */; };
 		94640EC31D0AF7E90035A2DE /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 94640EC21D0AF7E90035A2DE /* Venue.m */; };
 		94640EC61D0B01AE0035A2DE /* AddNewVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94640EC51D0B01AE0035A2DE /* AddNewVenueViewController.m */; };
+		94640EC91D0B2A260035A2DE /* VenueList.m in Sources */ = {isa = PBXBuildFile; fileRef = 94640EC81D0B2A260035A2DE /* VenueList.m */; };
 		94DF90841D08711400960F7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90831D08711400960F7F /* main.m */; };
 		94DF90871D08711400960F7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DF90861D08711400960F7F /* AppDelegate.m */; };
 		94DF908D1D08711400960F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94DF908B1D08711400960F7F /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 		94640EC21D0AF7E90035A2DE /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		94640EC41D0B01AE0035A2DE /* AddNewVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewVenueViewController.h; sourceTree = "<group>"; };
 		94640EC51D0B01AE0035A2DE /* AddNewVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewVenueViewController.m; sourceTree = "<group>"; };
+		94640EC71D0B2A260035A2DE /* VenueList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueList.h; sourceTree = "<group>"; };
+		94640EC81D0B2A260035A2DE /* VenueList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueList.m; sourceTree = "<group>"; };
 		94DF907F1D08711400960F7F /* HereForBeer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HereForBeer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DF90831D08711400960F7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94DF90851D08711400960F7F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 		94DF90A21D08EA6100960F7F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				94640EC71D0B2A260035A2DE /* VenueList.h */,
+				94640EC81D0B2A260035A2DE /* VenueList.m */,
 				94DF909C1D08A44200960F7F /* Event.h */,
 				94DF909D1D08A44200960F7F /* Event.m */,
 				94640EC11D0AF7E90035A2DE /* Venue.h */,
@@ -287,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94640EC61D0B01AE0035A2DE /* AddNewVenueViewController.m in Sources */,
+				94640EC91D0B2A260035A2DE /* VenueList.m in Sources */,
 				94DF909E1D08A44200960F7F /* Event.m in Sources */,
 				94DF90A11D08EA5400960F7F /* User.m in Sources */,
 				940CD1111D08EF6900359DA1 /* FacebookLoginViewController.m in Sources */,

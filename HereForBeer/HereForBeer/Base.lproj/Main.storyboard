@@ -95,12 +95,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0RC-je-nIk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="venueCell" textLabel="jlz-Xn-7GK" style="IBUITableViewCellStyleDefault" id="0RC-je-nIk">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0RC-je-nIk" id="otx-ZM-MRq">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jlz-Xn-7GK">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -161,7 +170,7 @@
                                     <action selector="findVenueButtonPressed:" destination="YrT-8u-oyL" eventType="touchUpInside" id="i6C-4O-L7I"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIx-mM-lTn">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIx-mM-lTn">
                                 <rect key="frame" x="160" y="263" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -174,6 +183,7 @@
                             <constraint firstItem="ZhH-Mk-aWy" firstAttribute="width" secondItem="ZBQ-jd-iF9" secondAttribute="width" id="50k-Dw-guQ"/>
                             <constraint firstItem="0RJ-dO-JW7" firstAttribute="leading" secondItem="5Ew-re-7R1" secondAttribute="leadingMargin" constant="140" id="9P3-uf-UzQ"/>
                             <constraint firstItem="ZhH-Mk-aWy" firstAttribute="leading" secondItem="5Ew-re-7R1" secondAttribute="leadingMargin" constant="40" id="9al-2O-P2V"/>
+                            <constraint firstItem="IIx-mM-lTn" firstAttribute="centerX" secondItem="5Ew-re-7R1" secondAttribute="centerX" id="F4w-vs-uEb"/>
                             <constraint firstItem="0RJ-dO-JW7" firstAttribute="centerX" secondItem="5Ew-re-7R1" secondAttribute="centerX" id="GiL-RR-zcD"/>
                             <constraint firstItem="0RJ-dO-JW7" firstAttribute="top" secondItem="YY8-fx-cbB" secondAttribute="bottom" constant="119" id="Iu0-tj-2FR"/>
                             <constraint firstItem="ZhH-Mk-aWy" firstAttribute="top" secondItem="IIx-mM-lTn" secondAttribute="bottom" constant="50" id="Nlg-5N-kM6"/>

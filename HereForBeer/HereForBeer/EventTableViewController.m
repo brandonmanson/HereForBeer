@@ -55,11 +55,13 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    if (![VenueList getInstance].venues) {
+        [[VenueList getInstance]initListWithVenues];
+    }
     if (![User getInstance].token) {
-        _venues = [[NSMutableArray alloc] initWithObjects:[Venue initWithVenueName:@"Hopcat - Detroit" andID:@"648104601902330"], [Venue initWithVenueName:@"Bell's Eccentric Cafe" andID:@"206257849387824"], nil];
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
     } else {
-        [self populateEventList:_venues];
+        [self populateEventList:[User getInstance].userSelectedVenueList];
     }
     // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
 }

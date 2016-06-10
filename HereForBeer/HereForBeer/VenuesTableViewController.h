@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddNewVenueViewController.h"
+#import "Venue.h"
 
 @protocol filterEventsDelegate <NSObject>
 
