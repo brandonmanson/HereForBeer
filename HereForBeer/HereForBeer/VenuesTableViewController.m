@@ -8,6 +8,8 @@
 
 #import "VenuesTableViewController.h"
 #import "EventTableViewController.h"
+#import "VenueList.h"
+#import "User.h"
 
 @interface VenuesTableViewController ()
 
@@ -19,7 +21,6 @@ NSMutableArray *venuesArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -37,24 +38,37 @@ NSMutableArray *venuesArray;
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [[VenueList getInstance].venues count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"venueCell" forIndexPath:indexPath];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    Venue *venueInCell = [[VenueList getInstance].venues objectAtIndex:indexPath.row];
+    cell.textLabel.text = venueInCell.name;
+    if ([[User getInstance].userSelectedVenueList containsObject:venueInCell]) {
+        cell.backgroundColor = [UIColor cyanColor];
+    }
     
     return cell;
 }
-*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    Venue *venueInSelectedCell = [[VenueList getInstance].venues objectAtIndex:indexPath.row];
+    if ([[User getInstance].userSelectedVenueList containsObject:venueInSelectedCell]) {
+        cell.backgroundColor = [UIColor whiteColor];
+        [[User getInstance].userSelectedVenueList removeObject:venueInSelectedCell];
+    } else {
+        cell.backgroundColor = [UIColor cyanColor];
+        [[User getInstance].userSelectedVenueList addObject:venueInSelectedCell];
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -103,13 +117,9 @@ NSMutableArray *venuesArray;
 - (IBAction)unwindToVenueList:(UIStoryboardSegue *)unwindSegue sender:(id)sender {
     AddNewVenueViewController *vc = [unwindSegue sourceViewController];
     
-    EventTableViewController *eventTableCtrl = (EventTableViewController *)_delegate;
-    
-    NSLog(@"before: %@", eventTableCtrl.venues.description);
-    
-    [eventTableCtrl.venues addObject:vc.venueToReturn];
-    
-    NSLog(@"after: %@", eventTableCtrl.venues.description);
+    [[VenueList getInstance].venues addObject:vc.venueToReturn];
+    [[User getInstance].userSelectedVenueList addObject:vc.venueToReturn];
+    [self.tableView reloadData];
     
     //[eventTableCtrl.tableView reloadData];
 }

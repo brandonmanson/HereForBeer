@@ -14,6 +14,5 @@
 
 @interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer, filterEventsDelegate>
 
-@property (strong, nonatomic) NSMutableArray *venues;
 
 @end

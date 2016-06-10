@@ -26,6 +26,7 @@
 
 - (instancetype)initPrivately {
     self = [super init];
+    _userSelectedVenueList = [[VenueList getInstance].venues mutableCopy];
     return self;
 }
 
