@@ -30,6 +30,7 @@ HTTPMethod:@"GET"];
 
 #import "EventTableViewController.h"
 #import "EventDetailViewController.h"
+#import "VenuesTableViewController.h"
 #import "Event.h"
 #import "User.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
@@ -57,12 +58,14 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
     if (![User getInstance].token) {
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
     } else {
-        [self populateEventList];
+        pageIds = [[NSMutableArray alloc] initWithObjects:@"648104601902330", @"206257849387824", nil];
+        
+        [self populateEventList:pageIds];
     }
     // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
 }
 
-- (FBSDKGraphRequest *)createRequest:(NSMutableArray *)arrayOfPageIDs {
+- (FBSDKGraphRequest *)createRequestWithArrayOfIDs:(NSMutableArray *)arrayOfPageIDs {
     NSString *idString = [arrayOfPageIDs componentsJoinedByString:@", "];
     
     idString = [idString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
@@ -97,34 +100,9 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
     return eventArray;
 }
 
-- (void)populateEventList {
-	
-//	Event *event1 = [[Event alloc] init];
-//	Event *event2 = [[Event alloc] init];
-//	
-//	event1.eventName = @"Bell's Tap Takeover";
-//	event1.startTime = [self dateFromString:@"6/15/2016 6:00 PM"];
-//	event1.endTime = [self dateFromString:@"6/15/2016 10:00 PM"];
-//	event1.venueName = @"Hopcat Detroit";
-//	event1.venueStreetAddress = @"4265 Woodward Ave, Detroit, MI 48201";
-//	event1.eventDescription = @"Tap takeover. All of the beer. It will be poured.";
-//	event1.location = CLLocationCoordinate2DMake(42.352402, -83.061622);
-//	
-//	event2.eventName = @"Matt's garage beer";
-//	event2.startTime = [self dateFromString:@"6/25/2016 6:00 PM"];
-//	event2.endTime = [self dateFromString:@"6/25/2016 10:00 PM"];
-//	event2.venueName = @"Matt's garage";
-//	event2.venueStreetAddress = @"8275 Stamford Rd, Ypsilanti MI 48198";
-//	event2.eventDescription = @"Home brew baby.";
-//	event2.location = CLLocationCoordinate2DMake(42.273226, -83.598620);
-//	
-//	eventList = [[NSMutableArray alloc] initWithObjects:event1, event2, nil];
-    
-    NSMutableArray *ids = [[NSMutableArray alloc] initWithObjects:@"648104601902330", @"206257849387824", nil];
-    
-    FBSDKGraphRequest *request = [self createRequest:ids];
+- (void)populateEventList:(NSMutableArray *)arrayOfVenueIDs {
+    FBSDKGraphRequest *request = [self createRequestWithArrayOfIDs:arrayOfVenueIDs];
     [self makeRequest:request];
-    
 }
 
 -(NSDate *)dateFromString:(NSString *)dateString {
@@ -274,7 +252,7 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (![[segue identifier] isEqualToString:@"loginModalSegue"]) {
+    if ([[segue identifier] isEqualToString:@"eventDetailSegue"]) {
         
         EventDetailViewController *vc = [segue destinationViewController];
         
@@ -289,6 +267,9 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
         }
         
         vc.event = event;
+    } else if ([[segue identifier] isEqualToString:@"filterVenuesSegue"]) {
+        VenuesTableViewController *vc = [segue destinationViewController];
+        [vc setDelegate:self];
     }
 }
 

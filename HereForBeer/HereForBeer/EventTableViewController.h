@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "AppDateProcessor.h"
 #import "FacebookAPIConsumer.h"
+#import "VenuesTableViewController.h"
 
-@interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer>
+@interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer, filterEventsDelegate>
 
 @end

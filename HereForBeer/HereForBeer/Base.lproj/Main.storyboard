@@ -69,7 +69,13 @@
                             <outlet property="delegate" destination="8WT-4W-8GD" id="BOB-NU-ddc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Here for Beer" id="7GC-eO-5q3"/>
+                    <navigationItem key="navigationItem" title="Here for Beer" id="7GC-eO-5q3">
+                        <barButtonItem key="rightBarButtonItem" title="Filter Venues &gt;" id="MM1-Ix-dtV">
+                            <connections>
+                                <segue destination="3Cc-Mn-qrU" kind="show" identifier="filterVenuesSegue" id="UNC-eL-9iM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="E73-J5-G9s" kind="show" identifier="loginModalSegue" id="NIp-7E-pb2"/>
                     </connections>
@@ -77,6 +83,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dph-XI-Lf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-92" y="1215"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="Rjt-Q6-kqj">
+            <objects>
+                <tableViewController id="3Cc-Mn-qrU" customClass="VenuesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7tK-f4-2Oi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0RC-je-nIk">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0RC-je-nIk" id="otx-ZM-MRq">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3Cc-Mn-qrU" id="Y9T-h8-AWN"/>
+                            <outlet property="delegate" destination="3Cc-Mn-qrU" id="onQ-3U-13n"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="ftw-cz-SV0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5fq-TQ-5O4">
+                            <connections>
+                                <segue destination="YrT-8u-oyL" kind="show" identifier="addVenueSegue" id="0UJ-z9-oVu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I7E-IK-Gv7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="644" y="1668"/>
+        </scene>
+        <!--Add New Venue View Controller-->
+        <scene sceneID="s0f-CU-dCT">
+            <objects>
+                <viewController id="YrT-8u-oyL" customClass="AddNewVenueViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YY8-fx-cbB"/>
+                        <viewControllerLayoutGuide type="bottom" id="khq-1w-mRP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Ew-re-7R1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add A New Venue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91n-pN-ksu">
+                                <rect key="frame" x="231" y="109" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Facebook Page ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RJ-dO-JW7">
+                                <rect key="frame" x="160" y="183" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBQ-jd-iF9">
+                                <rect key="frame" x="302" y="276" width="138" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addVenueButtonPressed:" destination="YrT-8u-oyL" eventType="touchUpInside" id="zZs-r2-Igz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhH-Mk-aWy">
+                                <rect key="frame" x="156" y="276" width="138" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Find">
+                                    <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="findVenueButtonPressed:" destination="YrT-8u-oyL" eventType="touchUpInside" id="i6C-4O-L7I"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="addNewVenueButton" destination="ZBQ-jd-iF9" id="hcV-tT-t49"/>
+                        <outlet property="findVenueButton" destination="ZhH-Mk-aWy" id="G6w-2X-68b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oBD-od-U4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1363" y="1668"/>
         </scene>
         <!--Event Detail-->
         <scene sceneID="FGf-0h-BHY">
@@ -156,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5o-Rw-2Yo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="670" y="411"/>
+            <point key="canvasLocation" x="644" y="923"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ChK-sH-Mx2">
