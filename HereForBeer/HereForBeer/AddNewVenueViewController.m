@@ -11,6 +11,8 @@
 @interface AddNewVenueViewController ()
 @property (strong, nonatomic) IBOutlet UIButton *addNewVenueButton;
 @property (strong, nonatomic) IBOutlet UIButton *findVenueButton;
+@property (strong, nonatomic) IBOutlet UITextField *pageIdField;
+@property (strong, nonatomic) IBOutlet UILabel *pageNameLabel;
 
 @end
 
@@ -28,8 +30,33 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)findVenueButtonPressed:(UIButton *)sender {
+    FBSDKGraphRequest *request = [self createRequestWithIDString:_pageIdField.text];
+    [self makeRequest:request];
 }
 - (IBAction)addVenueButtonPressed:(UIButton *)sender {
+}
+
+- (FBSDKGraphRequest *)createRequestWithIDString:(NSString *)idString {
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:[NSString stringWithFormat:@"/%@", idString]
+                                  parameters:@{ @"fields": @"name, id",}
+                                  HTTPMethod:@"GET"];
+    
+    return request;
+}
+- (void)makeRequest:(FBSDKGraphRequest *)request {
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        NSDictionary *parsedData = (NSDictionary *)result;
+        
+        _venueToReturn = [self processResponseForVenue:parsedData];
+        _pageNameLabel.text = _venueToReturn.name;
+        _addNewVenueButton.alpha = 1;
+        _addNewVenueButton.enabled = YES;
+    }];
+}
+
+- (Venue *)processResponseForVenue:(NSDictionary *)parsedData {
+    return [Venue initWithVenueName:parsedData[@"name"] andID:parsedData[@"id"]];
 }
 
 /*

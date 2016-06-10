@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FacebookAPIConsumer.h"
+#import "Venue.h"
 
-@interface AddNewVenueViewController : UIViewController
+@interface AddNewVenueViewController : UIViewController <FacebookAPIConsumer>
+
+@property (strong, nonatomic) Venue *venueToReturn;
 
 @end

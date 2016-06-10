@@ -41,7 +41,7 @@ HTTPMethod:@"GET"];
 
 @implementation EventTableViewController
 
-NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
+NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,23 +56,25 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 
 - (void)viewDidAppear:(BOOL)animated {
     if (![User getInstance].token) {
+        _venues = [[NSMutableArray alloc] initWithObjects:[Venue initWithVenueName:@"Hopcat - Detroit" andID:@"648104601902330"], [Venue initWithVenueName:@"Bell's Eccentric Cafe" andID:@"206257849387824"], nil];
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
     } else {
-        pageIds = [[NSMutableArray alloc] initWithObjects:@"648104601902330", @"206257849387824", nil];
-        
-        [self populateEventList:pageIds];
+        [self populateEventList:_venues];
     }
     // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
 }
 
 - (FBSDKGraphRequest *)createRequestWithArrayOfIDs:(NSMutableArray *)arrayOfPageIDs {
-    NSString *idString = [arrayOfPageIDs componentsJoinedByString:@", "];
+    NSString *pageIDs = [[NSMutableString alloc] init];
+    for(Venue *venue in arrayOfPageIDs) {
+        pageIDs = [pageIDs stringByAppendingString:[NSString stringWithFormat:@"%@, ", venue.facebookID]];
+    }
     
-    idString = [idString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
+    pageIDs = [pageIDs stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
     
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/events"
-                                  parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": idString,@"since": @"2016-06-09",@"until": @"2016-07-09",}
+                                  parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": pageIDs,@"since": @"2016-06-09",@"until": @"2016-07-09",}
                                   HTTPMethod:@"GET"];
     
     return request;
@@ -205,7 +207,7 @@ NSMutableArray *eventList, *pageIds, *eventsThisWeek, *eventsThisMonth;
 	}
 	
 	cell.textLabel.text = event.eventName;
-	cell.detailTextLabel.text = [self formatDateToDateString:event.startTime];
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [self formatDateToDateString:event.startTime], event.venueName];
 	
 	return cell;
 }

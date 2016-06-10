@@ -86,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="-92" y="1215"/>
         </scene>
-        <!--Title-->
+        <!--Venues-->
         <scene sceneID="Rjt-Q6-kqj">
             <objects>
                 <tableViewController id="3Cc-Mn-qrU" customClass="VenuesTableViewController" sceneMemberID="viewController">
@@ -110,7 +110,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="ftw-cz-SV0">
+                    <navigationItem key="navigationItem" title="Venues" id="ftw-cz-SV0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5fq-TQ-5O4">
                             <connections>
                                 <segue destination="YrT-8u-oyL" kind="show" identifier="addVenueSegue" id="0UJ-z9-oVu"/>
@@ -123,7 +123,7 @@
             </objects>
             <point key="canvasLocation" x="644" y="1668"/>
         </scene>
-        <!--Add New Venue View Controller-->
+        <!--Add a New Venue-->
         <scene sceneID="s0f-CU-dCT">
             <objects>
                 <viewController id="YrT-8u-oyL" customClass="AddNewVenueViewController" sceneMemberID="viewController">
@@ -135,29 +135,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add A New Venue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91n-pN-ksu">
-                                <rect key="frame" x="231" y="109" width="138" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Facebook Page ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RJ-dO-JW7">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Facebook Page ID" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0RJ-dO-JW7">
                                 <rect key="frame" x="160" y="183" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBQ-jd-iF9">
-                                <rect key="frame" x="302" y="276" width="138" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZBQ-jd-iF9">
+                                <rect key="frame" x="302" y="334" width="138" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Add">
                                     <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="addVenueButtonPressed:" destination="YrT-8u-oyL" eventType="touchUpInside" id="zZs-r2-Igz"/>
+                                    <segue destination="gDO-mJ-7ie" kind="unwind" unwindAction="unwindToVenueList:sender:" id="NBb-EK-s0k"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhH-Mk-aWy">
-                                <rect key="frame" x="156" y="276" width="138" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhH-Mk-aWy">
+                                <rect key="frame" x="160" y="334" width="138" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Find">
                                     <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -166,15 +161,46 @@
                                     <action selector="findVenueButtonPressed:" destination="YrT-8u-oyL" eventType="touchUpInside" id="i6C-4O-L7I"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IIx-mM-lTn">
+                                <rect key="frame" x="160" y="263" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZhH-Mk-aWy" firstAttribute="top" secondItem="0RJ-dO-JW7" secondAttribute="bottom" constant="63" id="1x6-0W-PiJ"/>
+                            <constraint firstItem="ZhH-Mk-aWy" firstAttribute="width" secondItem="ZBQ-jd-iF9" secondAttribute="width" id="50k-Dw-guQ"/>
+                            <constraint firstItem="0RJ-dO-JW7" firstAttribute="leading" secondItem="5Ew-re-7R1" secondAttribute="leadingMargin" constant="140" id="9P3-uf-UzQ"/>
+                            <constraint firstItem="ZhH-Mk-aWy" firstAttribute="leading" secondItem="5Ew-re-7R1" secondAttribute="leadingMargin" constant="40" id="9al-2O-P2V"/>
+                            <constraint firstItem="0RJ-dO-JW7" firstAttribute="centerX" secondItem="5Ew-re-7R1" secondAttribute="centerX" id="GiL-RR-zcD"/>
+                            <constraint firstItem="0RJ-dO-JW7" firstAttribute="top" secondItem="YY8-fx-cbB" secondAttribute="bottom" constant="119" id="Iu0-tj-2FR"/>
+                            <constraint firstItem="ZhH-Mk-aWy" firstAttribute="top" secondItem="IIx-mM-lTn" secondAttribute="bottom" constant="50" id="Nlg-5N-kM6"/>
+                            <constraint firstItem="ZBQ-jd-iF9" firstAttribute="leading" secondItem="ZhH-Mk-aWy" secondAttribute="trailing" constant="4" id="PYz-v8-arB"/>
+                            <constraint firstItem="ZBQ-jd-iF9" firstAttribute="top" secondItem="IIx-mM-lTn" secondAttribute="bottom" constant="50" id="Yga-Fq-qSb"/>
+                            <constraint firstItem="ZBQ-jd-iF9" firstAttribute="top" secondItem="0RJ-dO-JW7" secondAttribute="bottom" constant="63" id="aPc-Q5-adn"/>
+                            <constraint firstItem="IIx-mM-lTn" firstAttribute="top" secondItem="0RJ-dO-JW7" secondAttribute="bottom" constant="50" id="ayA-Tn-HAV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZBQ-jd-iF9" secondAttribute="trailing" constant="40" id="ij2-fN-Yk9"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9P3-uf-UzQ"/>
+                                <exclude reference="1x6-0W-PiJ"/>
+                                <exclude reference="aPc-Q5-adn"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Add a New Venue" id="sCJ-h5-B5r"/>
                     <connections>
                         <outlet property="addNewVenueButton" destination="ZBQ-jd-iF9" id="hcV-tT-t49"/>
                         <outlet property="findVenueButton" destination="ZhH-Mk-aWy" id="G6w-2X-68b"/>
+                        <outlet property="pageIdField" destination="0RJ-dO-JW7" id="Qj2-5T-eZx"/>
+                        <outlet property="pageNameLabel" destination="IIx-mM-lTn" id="UxE-xp-J6w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBD-od-U4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gDO-mJ-7ie" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1363" y="1668"/>
         </scene>

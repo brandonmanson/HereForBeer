@@ -7,6 +7,7 @@
 //
 
 #import "VenuesTableViewController.h"
+#import "EventTableViewController.h"
 
 @interface VenuesTableViewController ()
 
@@ -14,8 +15,12 @@
 
 @implementation VenuesTableViewController
 
+NSMutableArray *venuesArray;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -94,5 +99,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)unwindToVenueList:(UIStoryboardSegue *)unwindSegue sender:(id)sender {
+    AddNewVenueViewController *vc = [unwindSegue sourceViewController];
+    
+    EventTableViewController *eventTableCtrl = (EventTableViewController *)_delegate;
+    
+    NSLog(@"before: %@", eventTableCtrl.venues.description);
+    
+    [eventTableCtrl.venues addObject:vc.venueToReturn];
+    
+    NSLog(@"after: %@", eventTableCtrl.venues.description);
+    
+    //[eventTableCtrl.tableView reloadData];
+}
 
 @end

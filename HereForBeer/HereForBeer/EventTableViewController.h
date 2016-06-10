@@ -10,7 +10,10 @@
 #import "AppDateProcessor.h"
 #import "FacebookAPIConsumer.h"
 #import "VenuesTableViewController.h"
+#import "Venue.h"
 
 @interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer, filterEventsDelegate>
+
+@property (strong, nonatomic) NSMutableArray *venues;
 
 @end
