@@ -8,11 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "Venue.h"
 
 @protocol FacebookAPIConsumer <NSObject>
 
-- (FBSDKGraphRequest *)createRequest:(NSMutableArray *)arrayOfPageIDs;
+@optional
+- (FBSDKGraphRequest *)createRequestWithArrayOfIDs:(NSMutableArray *)arrayOfPageIDs;
+@optional
+- (FBSDKGraphRequest *)createRequestWithIDString:(NSString *)idString;
 - (void)makeRequest:(FBSDKGraphRequest *)request;
-- (NSMutableArray *)processResponse:(NSDictionary *)parsedData;
+@optional
+- (NSMutableArray *)processResponseForEvents:(NSDictionary *)parsedData;
+@optional
+- (Venue *)processResponseForVenue:(NSDictionary *)parsedData;
+@optional
+- (void)getEvents;
+@optional
+- (void)getVenueForIDString:(NSString *)idString;
 
 @end
