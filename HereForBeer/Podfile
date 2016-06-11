@@ -8,6 +8,8 @@ target 'HereForBeer' do
   # Pods for HereForBeer
 pod ‘FBSDKCoreKit’, ‘~> 4.9’
 pod ‘FBSDKLoginKit’, ‘~> 4.9’
+pod ‘Fabric’
+pod ‘Crashlytics’
 
 
 end
