@@ -11,10 +11,12 @@
 
 @protocol populateEventsFromLoginDelegate <NSObject>
 
-- (void)populatEventsFromLogin;
+- (void)populateEventsFromLogin;
 
 @end
 
 @interface FacebookLoginViewController : UIViewController <FBSDKLoginButtonDelegate>
+
+@property (strong, nonatomic) id<populateEventsFromLoginDelegate>delegate;
 
 @end
