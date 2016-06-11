@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+@protocol populateEventsFromLoginDelegate <NSObject>
+
+- (void)populatEventsFromLogin;
+
+@end
+
 @interface FacebookLoginViewController : UIViewController <FBSDKLoginButtonDelegate>
 
 @end
