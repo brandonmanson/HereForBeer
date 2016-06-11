@@ -60,11 +60,11 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
     }
     if (![User getInstance].token) {
         [self performSegueWithIdentifier:@"loginModalSegue" sender:self];
-    } else {
-        [self populateEventList:[User getInstance].userSelectedVenueList];
     }
     // TO-DO: Add more handling for refresh tokens and expired tokens. Leaving as-is for the sake of time and the fact that the token is set to null when simulator is restarted
 }
+
+#pragma mark - Facebook API Call
 
 - (FBSDKGraphRequest *)createRequestWithArrayOfIDs:(NSMutableArray *)arrayOfPageIDs {
     NSString *pageIDs = [[NSMutableString alloc] init];
@@ -104,10 +104,18 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
     return eventArray;
 }
 
+#pragma mark - Delegate Methods
+
 - (void)populateEventList:(NSMutableArray *)arrayOfVenueIDs {
     FBSDKGraphRequest *request = [self createRequestWithArrayOfIDs:arrayOfVenueIDs];
     [self makeRequest:request];
 }
+
+- (void)populateEventsFromLogin {
+    [self populateEventList:[User getInstance].userSelectedVenueList];
+}
+
+#pragma mark - Time Conversion
 
 -(NSDate *)dateFromString:(NSString *)dateString {
 	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -174,6 +182,8 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - TableViewCell Init
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return 2;
@@ -274,6 +284,10 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
     } else if ([[segue identifier] isEqualToString:@"filterVenuesSegue"]) {
         VenuesTableViewController *vc = [segue destinationViewController];
         [vc setDelegate:self];
+    } else if ([[segue identifier] isEqualToString:@"loginModalSegue"]) {
+        FacebookLoginViewController *vc = [segue destinationViewController];
+        [vc setDelegate:self];
+        
     }
 }
 

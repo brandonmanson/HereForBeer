@@ -21,6 +21,7 @@ NSMutableArray *venuesArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    EventTableViewController *eventTableView = (EventTableViewController *)_delegate;
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -64,9 +65,15 @@ NSMutableArray *venuesArray;
     if ([[User getInstance].userSelectedVenueList containsObject:venueInSelectedCell]) {
         cell.backgroundColor = [UIColor whiteColor];
         [[User getInstance].userSelectedVenueList removeObject:venueInSelectedCell];
+        if ([_delegate respondsToSelector:@selector(populateEventList:)]) {
+            [_delegate populateEventList:[User getInstance].userSelectedVenueList];
+        }
     } else {
         cell.backgroundColor = [UIColor cyanColor];
         [[User getInstance].userSelectedVenueList addObject:venueInSelectedCell];
+        if ([_delegate respondsToSelector:@selector(populateEventList:)]) {
+            [_delegate populateEventList:[User getInstance].userSelectedVenueList];
+        }
     }
 }
 

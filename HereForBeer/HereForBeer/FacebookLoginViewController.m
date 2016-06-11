@@ -35,6 +35,7 @@
     // Init singleton and pass it the access token
     [[User getInstance]setAccessToken:result];
     if ([User getInstance]) {
+        [_delegate populateEventsFromLogin];
         [self performSegueWithIdentifier:@"unwindToTableView" sender:self];
     }
 }

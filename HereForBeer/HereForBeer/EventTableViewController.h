@@ -11,8 +11,9 @@
 #import "FacebookAPIConsumer.h"
 #import "VenuesTableViewController.h"
 #import "Venue.h"
+#import "FacebookLoginViewController.h"
 
-@interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer, filterEventsDelegate>
+@interface EventTableViewController : UITableViewController <AppDateProcessor, FacebookAPIConsumer, filterEventsDelegate, populateEventsFromLoginDelegate>
 
 
 @end
