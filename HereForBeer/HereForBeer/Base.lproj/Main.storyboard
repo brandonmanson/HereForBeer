@@ -37,32 +37,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventCell" textLabel="UYm-eR-BZ0" detailTextLabel="l12-Md-mrU" style="IBUITableViewCellStyleSubtitle" id="S94-l2-JmN">
-                                <rect key="frame" x="0.0" y="104" width="600" height="60"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="eventCell" rowHeight="200" id="S94-l2-JmN" customClass="EventCardTableViewCell">
+                                <rect key="frame" x="0.0" y="104" width="600" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S94-l2-JmN" id="o2u-vA-jdj">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UYm-eR-BZ0">
-                                            <rect key="frame" x="15" y="14" width="31.5" height="19.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l12-Md-mrU">
-                                            <rect key="frame" x="15" y="33.5" width="30.5" height="13.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1mU-Xa-882">
+                                            <rect key="frame" x="10" y="8" width="582" height="182"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kik-N2-Oar">
+                                                    <rect key="frame" x="8" y="0.0" width="574" height="80"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Venue Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogm-mv-chg">
+                                                    <rect key="frame" x="8" y="88" width="566" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJM-cL-5Lh">
+                                                    <rect key="frame" x="0.0" y="146" width="582" height="36"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="MORE INFO">
+                                                        <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="W3D-Z7-dLR" kind="show" identifier="eventDetailSegue" id="jLY-vO-s9i"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBs-5S-qHD">
+                                                    <rect key="frame" x="8" y="117" width="264" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fJM-cL-5Lh" secondAttribute="trailing" id="Czc-C4-e3e"/>
+                                                <constraint firstItem="ogm-mv-chg" firstAttribute="leading" secondItem="1mU-Xa-882" secondAttribute="leading" constant="8" id="ILI-EF-kwx"/>
+                                                <constraint firstAttribute="trailing" secondItem="ogm-mv-chg" secondAttribute="trailing" constant="8" id="OsO-ea-LsJ"/>
+                                                <constraint firstItem="KBs-5S-qHD" firstAttribute="leading" secondItem="1mU-Xa-882" secondAttribute="leading" constant="8" id="f0U-IP-0FS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Kik-N2-Oar" secondAttribute="trailing" id="jrq-vf-yNe"/>
+                                                <constraint firstItem="Kik-N2-Oar" firstAttribute="leading" secondItem="1mU-Xa-882" secondAttribute="leading" constant="8" id="mdo-Gw-AMK"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1mU-Xa-882" secondAttribute="trailing" id="Ni0-dH-Yox"/>
+                                        <constraint firstItem="fJM-cL-5Lh" firstAttribute="leading" secondItem="o2u-vA-jdj" secondAttribute="leadingMargin" constant="2" id="WI4-De-bCE"/>
+                                        <constraint firstItem="1mU-Xa-882" firstAttribute="leading" secondItem="o2u-vA-jdj" secondAttribute="leadingMargin" constant="2" id="dcA-u8-FZZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <segue destination="W3D-Z7-dLR" kind="show" identifier="eventDetailSegue" id="Wlf-1f-SCs"/>
+                                    <outlet property="cardView" destination="1mU-Xa-882" id="Nr6-rY-Fbp"/>
+                                    <outlet property="eventNameLabel" destination="Kik-N2-Oar" id="Qsa-aB-btT"/>
+                                    <outlet property="timeLabel" destination="KBs-5S-qHD" id="7sv-2w-BN4"/>
+                                    <outlet property="venueNameLabel" destination="ogm-mv-chg" id="sty-CT-Dqa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

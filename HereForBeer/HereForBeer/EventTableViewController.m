@@ -33,6 +33,7 @@ HTTPMethod:@"GET"];
 #import "VenuesTableViewController.h"
 #import "Event.h"
 #import "User.h"
+#import "EventCardTableViewCell.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface EventTableViewController ()
@@ -45,6 +46,7 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.separatorColor = [UIColor clearColor];
 	
 	
     // Uncomment the following line to preserve selection between presentations.
@@ -206,8 +208,8 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
 	}
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
+- (EventCardTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	EventCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
 	// Configure the cell...
 	
 	Event *event;
@@ -218,10 +220,14 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
 		event = [eventsThisMonth objectAtIndex:indexPath.row];
 	}
 	
-	cell.textLabel.text = event.eventName;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", [self formatDateToDateString:event.startTime], event.venueName];
-	
+	cell.eventNameLabel.text = event.eventName;
+	cell.timeLabel.text = [NSString stringWithFormat:@"%@", [self formatDateToDateString:event.startTime]];
+    cell.venueNameLabel.text = event.venueName;
 	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 200;
 }
 
 /*
