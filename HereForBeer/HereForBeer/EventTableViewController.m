@@ -76,9 +76,14 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
     
     pageIDs = [pageIDs stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
     
+    NSString *startDateForQuery = [self formatDateToDateString:[NSDate date]];
+    NSDate *endDate = [self addDays:30 toDate:[NSDate date]];
+    NSString *endDateForQuery = [self formatDateToDateString:endDate];
+    NSLog(@"Start Date: %@, End Date: %@", startDateForQuery, endDateForQuery);
+    
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/events"
-                                  parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": pageIDs,@"since": @"2016-06-09",@"until": @"2016-07-09",}
+                                  parameters:@{ @"fields": @"name, place, start_time, end_time, description", @"ids": pageIDs,@"since": startDateForQuery, @"until": endDateForQuery,}
                                   HTTPMethod:@"GET"];
     
     return request;
