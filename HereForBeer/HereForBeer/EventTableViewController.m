@@ -274,21 +274,27 @@ NSMutableArray *eventList, *eventsThisWeek, *eventsThisMonth;
 - (IBAction)unwindToTableView:(UIStoryboardSegue *)unwindSegue sender:(id)sender {
     
 }
+- (IBAction)moreInfoButtonPressed:(UIButton *)sender {
+//    NSLog(@"Button pressed");
+//    [self performSegueWithIdentifier:@"eventDetailSegue" sender:sender];
+}
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"eventDetailSegue"]) {
+        NSLog(@"eventDetailSegueFired");
         
         EventDetailViewController *vc = [segue destinationViewController];
         
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        
+        // Copied this in from SO, hence the bad variable names. This gets the indexPath from the button subview inside the cell
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
         Event *event;
         
-        if (indexPath.section == 0) {
-            event = [eventsThisWeek objectAtIndex:indexPath.row];
+        if (hitIndex.section == 0) {
+            event = [eventsThisWeek objectAtIndex:hitIndex.row];
         } else {
-            event = [eventsThisMonth objectAtIndex:indexPath.row];
+            event = [eventsThisMonth objectAtIndex:hitIndex.row];
         }
         
         vc.event = event;
