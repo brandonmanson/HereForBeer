@@ -62,9 +62,12 @@ NSMutableArray *venuesArray;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     Venue *venueInSelectedCell = [[VenueList getInstance].venues objectAtIndex:indexPath.row];
+    NSLog(@"Before: %lu", [[User getInstance].userSelectedVenueList count]);
     if ([[User getInstance].userSelectedVenueList containsObject:venueInSelectedCell]) {
         cell.backgroundColor = [UIColor whiteColor];
         [[User getInstance].userSelectedVenueList removeObject:venueInSelectedCell];
+        
+        NSLog(@"After: %lu", [[User getInstance].userSelectedVenueList count]);
         if ([_delegate respondsToSelector:@selector(populateEventList:)]) {
             [_delegate populateEventList:[User getInstance].userSelectedVenueList];
         }
