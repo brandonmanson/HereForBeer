@@ -68,6 +68,10 @@
                                                     <state key="normal" title="MORE INFO">
                                                         <color key="titleColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="moreInfoButtonPressed:" destination="8WT-4W-8GD" eventType="touchUpInside" id="FSZ-c5-ciM"/>
+                                                        <segue destination="W3D-Z7-dLR" kind="show" identifier="eventDetailSegue" id="aC5-wb-1Ft"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KBs-5S-qHD">
                                                     <rect key="frame" x="8" y="117" width="264" height="21"/>
@@ -99,7 +103,6 @@
                                     <outlet property="eventNameLabel" destination="Kik-N2-Oar" id="Qsa-aB-btT"/>
                                     <outlet property="timeLabel" destination="KBs-5S-qHD" id="7sv-2w-BN4"/>
                                     <outlet property="venueNameLabel" destination="ogm-mv-chg" id="sty-CT-Dqa"/>
-                                    <segue destination="W3D-Z7-dLR" kind="show" identifier="eventDetailSegue" id="rvD-81-wiK"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
